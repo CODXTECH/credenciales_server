@@ -32,13 +32,16 @@ app.use("/api", qrRoutes); // Todas las rutas iniciaran en api despues de localh
 app.use(notFoundRouter);
 app.use(routeErrorHandling);
 
-console.log("ANTES DE LISTEN");
-console.log("PORT =", PORT);
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Conectado con exito :)");
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log("=================================");
-  console.log("SERVIDOR INICIADO CORRECTAMENTE");
-  console.log("PORT:", PORT);
-  console.log("HOST: 0.0.0.0");
-  console.log("=================================");
-});
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Servidor activo en puerto: ${PORT}`);
+      console.log(`url frontend: ${FRONTEND_URL}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Error muy malo", err);
+  });
