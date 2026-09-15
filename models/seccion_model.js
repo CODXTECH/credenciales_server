@@ -18,7 +18,7 @@ const Seccion = sequelize.define(
   },
 
   {
-    tableName: "Secciones",
+    tableName: "secciones",
     timestamps: false,
   },
 );
