@@ -1,24 +1,3 @@
-
-process.on("SIGTERM", () => {
-  console.log("⚠️ SIGTERM RECIBIDO");
-});
-
-process.on("SIGINT", () => {
-  console.log("⚠️ SIGINT RECIBIDO");
-});
-
-process.on("exit", (code) => {
-  console.log("⚠️ NODE EXIT, código:", code);
-});
-
-process.on("uncaughtException", (err) => {
-  console.error("❌ UNCAUGHT EXCEPTION:", err);
-});
-
-process.on("unhandledRejection", (reason) => {
-  console.error("❌ UNHANDLED REJECTION:", reason);
-});
-
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -53,17 +32,13 @@ app.use("/api", qrRoutes); // Todas las rutas iniciaran en api despues de localh
 app.use(notFoundRouter);
 app.use(routeErrorHandling);
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log("Conectado con exito :)");
+console.log("ANTES DE LISTEN");
+console.log("PORT =", PORT);
 
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`Servidor activo en puerto: ${PORT}`);
-      console.log(`url frontend: ${FRONTEND_URL}`);
-    });
-  })
-  .catch((err) => {
-    console.error("Error muy malo", err);
-    process.exit(1);
-  });
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("=================================");
+  console.log("SERVIDOR INICIADO CORRECTAMENTE");
+  console.log("PORT:", PORT);
+  console.log("HOST: 0.0.0.0");
+  console.log("=================================");
+});
