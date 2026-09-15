@@ -1,4 +1,24 @@
 require("dotenv").config();
+process.on("SIGTERM", () => {
+  console.log("⚠️ SIGTERM RECIBIDO");
+});
+
+process.on("SIGINT", () => {
+  console.log("⚠️ SIGINT RECIBIDO");
+});
+
+process.on("exit", (code) => {
+  console.log("⚠️ NODE EXIT, código:", code);
+});
+
+process.on("uncaughtException", (err) => {
+  console.error("❌ UNCAUGHT EXCEPTION:", err);
+});
+
+process.on("unhandledRejection", (reason) => {
+  console.error("❌ UNHANDLED REJECTION:", reason);
+});
+
 const express = require("express");
 const cors = require("cors");
 const sequelize = require("./config/database");
@@ -42,4 +62,5 @@ sequelize
   })
   .catch((err) => {
     console.error("Error muy malo", err);
+    process.exit(1);
   });
