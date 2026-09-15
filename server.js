@@ -12,7 +12,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL;
 // usamos cors
 app.use(
   cors({
-    origin: [FRONTEND_URL],
+    origin: FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     allowedHeaders: ['Origin', 'Accept', 'Content-Type', 'Cache-Control'],
