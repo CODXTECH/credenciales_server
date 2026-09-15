@@ -1,4 +1,4 @@
-require("dotenv").config();
+
 process.on("SIGTERM", () => {
   console.log("⚠️ SIGTERM RECIBIDO");
 });
@@ -19,6 +19,7 @@ process.on("unhandledRejection", (reason) => {
   console.error("❌ UNHANDLED REJECTION:", reason);
 });
 
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const sequelize = require("./config/database");
@@ -35,6 +36,8 @@ app.use(
     origin: [FRONTEND_URL],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    allowedHeaders: ['Origin', 'Accept', 'Content-Type', 'Cache-Control'],
+    exposedHeaders: ['Cache-Control', 'Connection', 'Content-Type']
   }),
 );
 const PORT = process.env.PORT || 3005;
