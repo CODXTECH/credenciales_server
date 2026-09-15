@@ -27,6 +27,12 @@ app.use(morgan('combined'));
 app.use("/api/qr", qrRoutes);
 app.use("/api", qrRoutes); // Todas las rutas iniciaran en api despues de localhost y puerto etc
 
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok"
+  });
+});
+
 app.use(notFoundRouter);
 app.use(routeErrorHandling);
 
