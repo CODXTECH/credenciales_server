@@ -39,7 +39,7 @@ sequelize
 
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`Servidor activo en puerto: ${PORT}`);
-      console.log(`url frontend: ${FRONTEND_URL}`);
+      console.log(`url frontend: ${PERSMISS_URL}`);
     });
   })
   .catch((err) => {
