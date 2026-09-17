@@ -8,11 +8,11 @@ const {notFoundRouter, routeErrorHandling} = require("./error.js");
 
 const app = express(); //Inicializamos
 
-const FRONTEND_URL = process.env.FRONTEND_URL;
+const PERSMISS_URL = process.env.PERSMISS_URL;
 // usamos cors
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: PERSMISS_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     allowedHeaders: ['Origin', 'Accept', 'Content-Type', 'Cache-Control'],
